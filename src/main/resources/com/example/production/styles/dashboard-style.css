@@ -1,0 +1,75 @@
+.side-pane2 {
+    -fx-background-color: #2B4865;
+}
+
+.menu-btn {
+    -fx-background-color: #3a6188;
+    -fx-text-fill: #c6d0cd;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 14;
+    -fx-pref-width: 150;
+}
+.menu-btn:hover {
+    -fx-background-color: #46749f;
+    -fx-cursor: hand;
+}
+.profile-label {
+    -fx-text-fill: #c6d0cd;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 14;
+}
+
+.dashboard {
+    -fx-background-color: #F2F2F2;
+}
+
+.side-pane {
+    -fx-background-color: #2B4865;
+}
+
+.btns {
+    -fx-background-color: #002B5B;
+    -fx-fill: white;
+}
+
+.btns:hover {
+    -fx-background-color: #88A7E1;
+    -fx-background-radius: 5;
+    /*-fx-text-fill: black;*/
+    -fx-cursor: hand;
+}
+
+.menu-items {
+    -fx-border-color: dodgerblue;
+    -fx-border-width: 0.3;
+    -fx-background-radius: 10;
+}
+
+.menu-items:hover {
+    -fx-background-color: #8CDAE0;
+    -fx-border-color: none;
+    -fx-cursor: hand;
+}
+
+.close {
+    -fx-border-color: red;
+    -fx-border-width: 0.3;
+    -fx-background-radius: 10;
+}
+
+.close:hover {
+    -fx-background-color: red;
+    -fx-border-color: none;
+    -fx-cursor: hand;
+}
+
+.top-Pane {
+    -fx-border-color: #2B4865;
+    -fx-border-width: 0.2;
+}
+
+.profile-pane:hover {
+    -fx-background-color: #3d668f;
+    -fx-cursor: hand;
+    -fx-background-radius: 10;
+}

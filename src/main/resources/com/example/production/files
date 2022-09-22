@@ -1,0 +1,48 @@
+    for (Control control : controls) {
+            if (control instanceof TextField) {
+
+                ((TextField) control).textProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        if (control.getId().equals("discount")) {
+                            if (((TextField) control).getText().matches("[0-9]*") &&
+                                    ((!((TextField) control).getText().isEmpty()) && (!((TextField) control).getText().isBlank()))) {
+
+                                discountVal.setVisible(false);
+                                inputValid = true;
+
+                                double discountValue = Double.parseDouble(((TextField) control).getText().trim());
+                                if (discountValue > maxDiscount) {
+
+                                    inputValid = false;
+                                    discountVal.setText("Qiime dhimistu kama badnaan karto " + maxDiscount);
+                                    discountVal.setVisible(true);
+
+                                } else {
+                                    inputValid = true;
+                                    discountVal.setVisible(false);
+                                }
+                            } else {
+                                inputValid = false;
+                                discountVal.setText("Fadlan lanbar qudha lo ogol yahay halkan  ");
+                                discountVal.setVisible(true);
+                            }
+                        }
+
+
+                    }
+                });
+            } else if (control instanceof DatePicker) {
+
+
+                ((DatePicker) control).valueProperty().addListener(new ChangeListener<LocalDate>() {
+                    @Override
+                    public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
+
+                    }
+                });
+            }
+        }
+
+        return inputValid;
+    }
