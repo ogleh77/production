@@ -323,6 +323,9 @@ public class GeneralClass {
                 && (!textField.getText().isBlank() && !textField.getText().isBlank()));
 
     }
-
+    //Return value of textFiled withTrimed¬
+    public String get(TextField textField) {
+        return textField.getText().trim();
+    }
 
 }

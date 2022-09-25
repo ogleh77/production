@@ -54,7 +54,7 @@ public class SplashScreenController implements Initializable {
 
     public void setModel(Users activeUser) throws SQLException {
         this.model = new Model();
-
+        System.out.println(model.getCustomerDAO().getAll().size());
         Thread thread = new Thread(model);
         this.activeUser = activeUser;
         this.welcomeUserName.setText("Welcome " + activeUser.getUsername());

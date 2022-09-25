@@ -44,7 +44,7 @@ public class Model extends Task<Void> {
             }
             updateProgress(i, limit);
             updateMessage("Loading ");
-            Thread.sleep(1000);
+            Thread.sleep(100);
         }
 
 

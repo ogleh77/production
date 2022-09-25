@@ -1,183 +1,158 @@
- create table users
- (
-     user_id    INTEGER PRIMARY KEY AUTOINCREMENT not null,
-     first_name VARCHAR(50)                       not null,
-     last_name  VARCHAR(50)                       not null,
-     phone      INT                               not null
-         unique,
-     gender     VARCHAR(10)                       not null,
-     shift      VARCHAR(50)                       not null,
-     username   VARCHAR(50)                       not null
-         unique,
-     password   VARCHAR(50)                       not null,
-     image      TEXT                              not null,
-     role       Varchar(10)
- );
+ package com.example.production.models;
 
- INSERT INTO users(first_name, last_name, phone, gender, shift, username, password, image, role)
- VALUES ('Mohamed', 'Saeed', 4321567, 'Male', 'Afternoon', 'ogleh', 1234, 'empty', 'user');
+ import com.example.production.entities.Customers;
+ import com.example.production.entities.services.Box;
+ import com.example.production.models.service.DailyReportDAO;
+ import com.example.production.repositories.Repo;
+ import javafx.collections.FXCollections;
+ import javafx.collections.ObservableList;
+
+ import java.sql.*;
+ import java.time.LocalDate;
+ import java.util.Arrays;
 
 
- -- auto-generated definition
- create table customer
- (
-     costumer_id INTEGER
-         primary key autoincrement,
-     first_name  VARCHAR(50) not null,
-     last_name   VARCHAR(50) not null,
-     phone       int         not null unique,
-     gender      VARCHAR(10) not null,
-     paid_by     VARCHAR(20) not null,
-     paid        double      not null,
-     discount    double      not null,
-     shift       VARCHAR(20) not null,
-     exp_date    VARCHAR(20) not null,
-     weight      double      default 65,
-     box_fk      INT         default 0
-         constraint fk_box
-             references box,
-     poxing      boolean     default false,
-     image       TEXT        not null,
-     user_added  VARCHAR(20) not null,
-     date_joined VARCHAR(20) default (strftime('%Y-%m-%d', 'now')) not null
- );
+ public class CustomerDAO extends Repo<Customers> {
+     private Connection connection;
+     private DailyReportDAO dailyReportDAO;
+     private LocalDate today;
 
- DROP TABLE customer;
+     public CustomerDAO() {
+         this.dailyReportDAO = new DailyReportDAO();
+     }
+
+     @Override
+     public void insert(Customers customer) throws SQLException {
+         today = LocalDate.now();
+         connection = getConnection();
+         connection.setAutoCommit(false);
 
 
- create table box
- (
-     box_id     INTEGER
-         primary key autoincrement,
-     box_title  VARCHAR(50) not null,
-     box_cost   double  default 3.0,
-     box_status boolean default true
- );
+         String query = "INSERT INTO customer(first_name, last_name, phone, gender, paid_by, paid, discount, shift, exp_date, weight, box_fk, poxing, image, user_added,date_joined)" +
+                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         PreparedStatement preparedStatement = connection.prepareStatement(query);
+         //Qualify the genders......
+         qualificationChecker(customer, today);
+         //Persist by db
+         setPreparedStatement(customer, preparedStatement, today, false);
 
- -- auto-generated definition
- create table gym
- (
-     gym_id       INT          not null
-         primary key,
-     gym_name     varchar(100) not null,
-     fitness_cost double       not null,
-     poxing_cost  double       not null,
-     max_discount double       not null
- );
+         connection.commit();
+         System.out.println("Saved...");
+         //connection.commit();
 
+     }
 
- create table daily_report
- (
-     report_day         VARCHAR(50) default (strftime('%Y-%m-%d', 'now')) not null,
-     registration       INT         default 0 not null,
-     short_registration INT         default 0 not null,
-     male               INT         default 0 not null,
-     female             INT         default 0 not null,
-     vip_box            INT         default 0 not null
- );
+     @Override
+     public void update(Customers customer) throws SQLException {
+ //        String today = df.format(new Date()).substring(3, 10);
+ //        String dateJoined = customer.getDateJoined().substring(3, 10);
+         connection = getConnection();
+         PreparedStatement ps;
+         String query = "INSERT INTO customer(first_name, last_name, phone, gender, paid_by, paid, discount, shift, exp_date, weight, box_fk, poxing, image, user_added)" +
+                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         PreparedStatement preparedStatement = connection.prepareStatement(query);
+         //Qualify the genders......
+         qualificationChecker(customer, today);
+         //Persist by db
+         setPreparedStatement(customer, preparedStatement, today, false);
+         //customers.add(customer);
+         connection.commit();
+         System.out.println("Saved...");
 
- -- DROP TABLE daily_report;
+         String updateQuery = " UPDATE customer SET first_name=?, last_name=?, phone=?, gender=?, paid_by=?," +
+                 " paid=?, discount=?, shift=?, exp_date=?, weight=?, box_fk=?, poxing=?, image=?, user_added=?,date_joined=?" +
+                 "WHERE costumer_id=" + customer.getCostumerId();
+         ps = connection.prepareStatement(updateQuery);
+         setPreparedStatement(customer, ps, LocalDate.now(), false);
+         System.out.println("Active customer mutated...");
 
- create table monthly_report
- (
-     report_month              VARCHAR(50) default (strftime('%Y-%m', 'now')) not null,
-     total_registrations       INT         default 0 not null,
-     total_short_registrations INT         default 0 not null,
-     total_male                INT         default 0 not null,
-     total_female              INT         default 0 not null,
-     total_vip_box             INT         default 0 not null
- );
- -- DROP TABLE monthly_report;
+         ps.close();
+     }
 
- SELECT * FROM monthly_report;
+     @Override
+     public ObservableList<Customers> getAll() throws SQLException {
+         ObservableList<Customers> customers = FXCollections.observableArrayList();
+         Customers customer = null;
+         Box box = null;
+         Connection connection = getConnection();
+         Statement statement = connection.createStatement();
 
+         ResultSet rs = statement.executeQuery("SELECT * FROM customer INNER JOIN box " +
+                 "ON customer.box_fk = box.box_id;");
 
- INSERT INTO daily_report(registration, short_registration, male, female, vip_box)
- VALUES (2, 3, 4, 5, 2),(2, 3, 4, 5, 2),(2, 3, 4, 5, 2);
+         while (rs.next()) {
 
- SELECT * FROM daily_report;
+             box = new Box(rs.getInt("box_id"),
+                     rs.getString("box_title"),
+                     rs.getDouble("box_cost"), rs.getBoolean("box_status"));
 
- INSERT INTO gym(gym_id, gym_name, fitness_cost, poxing_cost, max_discount)
- VALUES (1, 'Todheer fitness', 10.2, 3.0, 2);
-
-
-
- INSERT INTO box(box_title, box_cost, box_status)
- VALUES ('box 2', 3.2, true),
-        ('box 1', 3.2, true),
-        ('box 3', 3.2, true);
-
-
-
- INSERT INTO customer(first_name, last_name, phone, gender, paid_by, paid, discount, shift, exp_date, weight, box_fk,
-                      poxing, image, user_added)
- VALUES ('Mohamed', 'Saeed', 4303923, 'Male', 'eDahab', 10.2, 1.0, 'Afternoon', '2022-10-19', 65, 1, true, 'empty',
-         'ogleh'),
-        ('Jamac', 'Ahmed', 4476619, 'Male', 'Zaad', 10.2, 1.0, 'Afternoon', '2022-08-19', 65, 1, true, 'empty', 'ogleh'),
-        ('Iido', 'Suleman', 8484593, 'Female', 'eDahab', 10.2, 1.0, 'Afternoon', '2022-10-11', 65, 1, true, 'empty',
-         'ogleh');
+             customer = getCustomers(box, rs);
+             customers.add(customer);
+         }
+         rs.close();
+         statement.close();
+         return customers;
+     }
 
 
-
- UPDATE customer
- set box_fk=2
- WHERE costumer_id = 4;
-
-
- SELECT *
- FROM customer;
-
-
-
-
-package com.example.production.models;
-
-import com.example.production.entities.Users;
-import com.example.production.repositories.Repo;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class UsersDAO extends Repo<Users> {
-
-    @Override
-    public void insert(Users users) {
-
-    }
-
-    @Override
-    public void update(Users users) {
-
-    }
-
-    @Override
-    public ObservableList<Users> getAll() throws SQLException {
-        ObservableList<Users> users = FXCollections.observableArrayList();
-        String query = "SELECT * FROM users";
-        Users user = null;
-        Connection connection = getConnection();
-
-        Statement statement = connection.createStatement();
-
-        ResultSet rs = statement.executeQuery(query);
-
-        while (rs.next()) {
-            user = new Users(rs.getInt(1), rs.getString(2), rs.getString(3),
-                    rs.getInt(4), rs.getString(5), rs.getString(6),
-                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
-            users.add(user);
-        }
-        connection.close();
-        statement.close();
-        rs.close();
-        return users;
-    }
-}
+     private Customers getCustomers(Box box, ResultSet rs) throws SQLException {
+         Customers customer;
+         LocalDate expDate = LocalDate.parse(rs.getString(10));
+         LocalDate dateJoined = LocalDate.parse(rs.getString(10));
+         customer = new Customers(
+                 rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                 rs.getString(5), rs.getString(6), rs.getDouble(7),
+                 rs.getDouble(8), rs.getString(9), expDate, rs.getDouble(11),
+                 box, rs.getBoolean(13), rs.getString(14), rs.getString(15), dateJoined);
+         return customer;
+     }
 
 
+     private void setPreparedStatement(Customers customer, PreparedStatement ps, LocalDate day, boolean outdated) throws SQLException {
+         ps.setString(1, customer.getFirstName());
+         ps.setString(2, customer.getLastName());
+         ps.setString(3, customer.getPhone());
+         ps.setString(4, customer.getGender());
+         ps.setString(5, customer.getPaidBy());
+         ps.setDouble(6, customer.getPaid());
+         ps.setDouble(7, customer.getDiscount());
+         ps.setString(8, customer.getShift());
+         ps.setString(9, customer.getExpDate().toString());
+         ps.setDouble(10, customer.getWeight());
+         ps.setInt(11, customer.getBox().getBoxId());
+         ps.setBoolean(12, customer.isPoxing());
+         ps.setString(13, customer.getImage());
+         ps.setString(14, customer.getUserAdded());
+         ps.setString(15, customer.getDateJoined().toString());
+         if (outdated) {
+             //update today if the user is outdated
+             ps.setString(15, day.toString());
+         }
+
+         ps.executeUpdate();
+
+         System.out.println("executed....");
 
 
+     }
+
+     public void qualificationChecker(Customers customer, LocalDate today) throws SQLException {
+         Statement st = connection.createStatement();
+
+         if (customer.getGender().equals("Male") && customer.getBox().getBoxId() > 0) {
+             dailyReportDAO.dailyReportMaleWithBox(today, st);
+
+         } else if (customer.getGender().equals("Female") && customer.getBox().getBoxId() > 0) {
+             dailyReportDAO.dailyReportFemaleWithBox(today, st);
+
+         } else if (customer.getBox().getBoxId() == 0 && customer.getGender().equals("Male")) {
+             dailyReportDAO.dailyReportMaleWithOutBox(today, st);
+         } else if (customer.getBox().getBoxId() == 0 && customer.getGender().equals("Female")) {
+             dailyReportDAO.dailyReportFemaleWithOutBox(today, st);
+         }
+         int arr[] = st.executeBatch();
+         System.out.println(Arrays.toString(arr));
+         st.close();
+     }
+
+ }

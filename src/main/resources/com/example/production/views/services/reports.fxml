@@ -7,89 +7,81 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="713.0" prefWidth="1013.0" styleClass="report-pane"
-            stylesheets="@../../styles/report-style.css" xmlns="http://javafx.com/javafx/18"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.production.controller.service.ReportController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="713.0" prefWidth="1013.0" styleClass="report-pane" stylesheets="@../../styles/report-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.controller.service.ReportController">
     <children>
-        <ImageView fitHeight="199.0" fitWidth="240.0" layoutX="54.0" layoutY="513.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView fitHeight="199.0" fitWidth="240.0" layoutX="54.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../../togdheergym/src/main/resources/com/example/togdheergym/svg-images/undraw_Data_report_re_p4so.png"/>
+                <Image url="@../../../../../../../../../togdheergym/src/main/resources/com/example/togdheergym/svg-images/undraw_Data_report_re_p4so.png" />
             </image>
         </ImageView>
         <Label layoutX="38.0" layoutY="33.0" prefHeight="16.0" prefWidth="90.0" text="Daily report" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0"/>
+                <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="76.0" layoutY="677.0" prefHeight="24.0" prefWidth="162.0" text="Reports form"
-               textFill="#3e6157">
+        <Label layoutX="76.0" layoutY="677.0" prefHeight="24.0" prefWidth="162.0" text="Reports form" textFill="#3e6157">
             <font>
-                <Font name="Arial Black" size="16.0"/>
+                <Font name="Arial Black" size="16.0" />
             </font>
         </Label>
         <TableView fx:id="dailyTable" layoutX="38.0" layoutY="57.0" prefHeight="180.0" prefWidth="498.0">
             <columns>
-                <TableColumn fx:id="reportDay" prefWidth="95.0" text="report day"/>
-                <TableColumn fx:id="registration" prefWidth="86.0" text="Registrations"/>
-                <TableColumn fx:id="tempReg" prefWidth="78.0" text="Temp Reg"/>
-                <TableColumn fx:id="male" prefWidth="74.0" text="Male"/>
-                <TableColumn fx:id="female" prefWidth="78.0" text="Female"/>
-                <TableColumn fx:id="vipBox" prefWidth="86.0" text="vip box"/>
+                <TableColumn fx:id="reportDay" prefWidth="95.0" text="report day" />
+                <TableColumn fx:id="registration" prefWidth="86.0" text="Registrations" />
+                <TableColumn fx:id="tempReg" prefWidth="78.0" text="Temp Reg" />
+                <TableColumn fx:id="male" prefWidth="74.0" text="Male" />
+                <TableColumn fx:id="female" prefWidth="78.0" text="Female" />
+                <TableColumn fx:id="vipBox" prefWidth="86.0" text="vip box" />
             </columns>
         </TableView>
-        <BarChart layoutX="567.0" layoutY="53.0" prefHeight="199.0" prefWidth="421.0"
-                  style="-fx-background-color: #E9F3F3;">
+        <BarChart layoutX="567.0" layoutY="53.0" prefHeight="199.0" prefWidth="421.0" style="-fx-background-color: #E9F3F3;">
             <xAxis>
-                <CategoryAxis side="BOTTOM"/>
+                <CategoryAxis side="BOTTOM" />
             </xAxis>
             <yAxis>
-                <NumberAxis side="LEFT"/>
+                <NumberAxis side="LEFT" />
             </yAxis>
         </BarChart>
         <TableView layoutX="45.0" layoutY="320.0" prefHeight="180.0" prefWidth="498.0">
             <columns>
-                <TableColumn prefWidth="90.0" text="report month"/>
-                <TableColumn prefWidth="103.0" text="total registration"/>
-                <TableColumn prefWidth="71.0" text="total temp"/>
-                <TableColumn prefWidth="71.0" text="total male"/>
-                <TableColumn text="total female"/>
-                <TableColumn prefWidth="82.0" text="total vip box"/>
+                <TableColumn prefWidth="90.0" text="report month" />
+                <TableColumn prefWidth="103.0" text="total registration" />
+                <TableColumn prefWidth="71.0" text="total temp" />
+                <TableColumn prefWidth="71.0" text="total male" />
+                <TableColumn text="total female" />
+                <TableColumn prefWidth="82.0" text="total vip box" />
             </columns>
         </TableView>
-        <BarChart layoutX="567.0" layoutY="320.0" prefHeight="180.0" prefWidth="421.0"
-                  style="-fx-background-color: #E9F3F3;">
+        <BarChart layoutX="567.0" layoutY="320.0" prefHeight="180.0" prefWidth="421.0" style="-fx-background-color: #E9F3F3;">
             <xAxis>
-                <CategoryAxis side="BOTTOM"/>
+                <CategoryAxis side="BOTTOM" />
             </xAxis>
             <yAxis>
-                <NumberAxis side="LEFT"/>
+                <NumberAxis side="LEFT" />
             </yAxis>
         </BarChart>
-        <Separator layoutX="38.0" layoutY="270.0" prefHeight="3.0" prefWidth="949.0"/>
-        <Label layoutX="45.0" layoutY="297.0" prefHeight="16.0" prefWidth="112.0" text="Monthly report"
-               textFill="#9e9898">
+        <Separator layoutX="38.0" layoutY="270.0" prefHeight="3.0" prefWidth="949.0" />
+        <Label layoutX="45.0" layoutY="297.0" prefHeight="16.0" prefWidth="112.0" text="Monthly report" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0"/>
+                <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="567.0" layoutY="29.0" prefHeight="16.0" prefWidth="112.0" text="Weekly statics"
-               textFill="#9e9898">
+        <Label layoutX="567.0" layoutY="29.0" prefHeight="16.0" prefWidth="112.0" text="Weekly statics" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0"/>
+                <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="567.0" layoutY="297.0" prefHeight="16.0" prefWidth="112.0" text="monthly statics"
-               textFill="#9e9898">
+        <Label layoutX="567.0" layoutY="297.0" prefHeight="16.0" prefWidth="112.0" text="monthly statics" textFill="#9e9898">
             <font>
-                <Font name="Arial Bold" size="14.0"/>
+                <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
+      <TextField fx:id="searchDay" layoutX="279.0" layoutY="16.0" prefHeight="34.0" prefWidth="257.0" promptText="saerch by day" />
     </children>
 </AnchorPane>

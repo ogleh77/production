@@ -54,7 +54,7 @@ public class DailyReportDAO extends Repo<DailyReport> {
 
     public void dailyReportMaleWithBox(LocalDate date, Statement st) throws SQLException {
         month = String.valueOf(date).substring(0, 7);
-        System.out.println("date is " + date);
+        // System.out.println("date is " + date);
 
         if (st.executeUpdate("UPDATE daily_report SET registration=(registration+1),male=(male+1),vip_box=(vip_box+1) " + "WHERE report_day ='" + date + "'") > 0) {
             //st.addBatch();
@@ -64,7 +64,7 @@ public class DailyReportDAO extends Repo<DailyReport> {
             String query = "INSERT INTO daily_report(registration,male,vip_box)VALUES (1,1,1)";
             // st.executeUpdate("INSERT INTO daily_report(regstared,male,vip_box)VALUES (1,1,1)");
             st.addBatch(query);
-            System.out.println("Saved male with box....");
+            //     System.out.println("Saved male with box....");
             //    monthlyDao.monthlyReportMaleWithBox(month, st);
         }
     }

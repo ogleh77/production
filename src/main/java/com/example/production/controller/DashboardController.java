@@ -43,7 +43,10 @@ public class DashboardController extends GeneralClass implements Initializable {
             if (activeUser.getRole().equals("user")) {
                 salleryBtn.setDisable(true);
             }
+
         });
+
+
     }
 
     @FXML
