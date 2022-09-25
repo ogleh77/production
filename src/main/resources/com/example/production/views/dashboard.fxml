@@ -16,162 +16,167 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stack" prefHeight="759.0" prefWidth="1213.0" stylesheets="@../styles/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0">
-         <left>
-            <VBox alignment="CENTER" prefHeight="699.0" prefWidth="200.0" spacing="25.0" styleClass="side-pane2" stylesheets="@../styles/dashboard-style.css" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox fx:id="profilePane" alignment="CENTER" prefHeight="109.0" prefWidth="200.0" styleClass="profile-pane">
-                     <children>
-                        <Circle fx:id="imageView" fill="DODGERBLUE" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Label styleClass="profile-label" text="Mohamed Ogleh" textFill="#8fe3cf">
-                           <font>
-                              <Font name="Arial Black" size="13.0" />
-                           </font>
+<StackPane fx:id="stackPane" prefHeight="759.0" prefWidth="1213.0" stylesheets="@../styles/dashboard-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.controller.DashboardController">
+    <children>
+        <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0">
+            <left>
+                <VBox alignment="CENTER" prefHeight="699.0" prefWidth="200.0" spacing="25.0" styleClass="side-pane2" stylesheets="@../styles/dashboard-style.css" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox fx:id="profilePane" alignment="CENTER" prefHeight="109.0" prefWidth="200.0" styleClass="profile-pane">
+                            <children>
+                                <Circle fx:id="imageView" fill="DODGERBLUE" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+                                <Label styleClass="profile-label" text="Mohamed Ogleh" textFill="#8fe3cf">
+                                    <font>
+                                        <Font name="Arial Black" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <Separator opacity="0.48" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </Separator>
+                        <JFXButton onAction="#homeHandler" prefHeight="38.0" prefWidth="143.0" styleClass="menu-btn" text="Home">
+                            <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/icons8-home-24.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#registrationsHandler" prefHeight="38.0" prefWidth="157.0" styleClass="menu-btn" text="Registrations">
+                            <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/icons8-registration-30.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#reportHandler" prefHeight="38.0" prefWidth="150.0" styleClass="menu-btn" text="Reports">
+                            <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/icons8-combo-chart-30.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="salleryBtn" onAction="#sallerHandler" prefHeight="38.0" prefWidth="148.0" styleClass="menu-btn" text="Sallery">
+                            <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/icons8-cash-in-hand-48%20(1).png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </JFXButton>
+                        <MenuButton mnemonicParsing="false" popupSide="RIGHT" styleClass="menu-btn" text="Serves" textFill="#c6d0cd">
+                            <items>
+
+                                <MenuItem fx:id="userCreation" mnemonicParsing="false" onAction="#userCreationHandler" text="Create new user" />
+                                <MenuItem mnemonicParsing="false" text="Gym operation" />
+                            </items>
+                            <graphic>
+                                <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/icons8-service-48.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="Arial Black" size="12.0" />
+                            </font>
+                        </MenuButton>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets top="-46.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </left>
+            <top>
+                <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="1086.0" styleClass="top-Pane" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label prefHeight="29.0" prefWidth="433.0" text="TOGDHEER GYM CENTER &gt;Home" textFill="#797575">
+                            <font>
+                                <Font name="Arial Black" size="14.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="50.0" />
+                            </HBox.margin>
                         </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <Separator opacity="0.48" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <JFXButton prefHeight="38.0" prefWidth="143.0" styleClass="menu-btn" text="Home">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/icons8-home-24.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
-                  <JFXButton prefHeight="38.0" prefWidth="157.0" styleClass="menu-btn" text="Registrations">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/icons8-registration-30.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
-                  <JFXButton prefHeight="38.0" prefWidth="150.0" styleClass="menu-btn" text="Reports">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/icons8-combo-chart-30.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
-                  <JFXButton prefHeight="38.0" prefWidth="148.0" styleClass="menu-btn" text="Sallery">
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/icons8-cash-in-hand-48%20(1).png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
-                  <MenuButton mnemonicParsing="false" popupSide="RIGHT" styleClass="menu-btn" text="Serves" textFill="#c6d0cd">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/icons8-service-48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Arial Black" size="12.0" />
-                     </font>
-                  </MenuButton>
-               </children>
-               <BorderPane.margin>
-                  <Insets top="-46.0" />
-               </BorderPane.margin>
-            </VBox>
-         </left>
-         <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="1086.0" styleClass="top-Pane" BorderPane.alignment="CENTER">
-               <children>
-                  <Label prefHeight="29.0" prefWidth="433.0" text="TOGDHEER GYM CENTER &gt;Home" textFill="#797575">
-                     <font>
-                        <Font name="Arial Black" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="50.0" />
-                     </HBox.margin>
-                  </Label>
-                  <StackPane prefHeight="46.0" prefWidth="53.0" styleClass="menu-items">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="menu-items">
-                           <children>
-                              <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/icons8-notification-48.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                        <HBox fx:id="notiCircle1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red; -fx-background-radius: 10;">
-                           <children>
-                              <Label fx:id="notiNum1" text="10" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial Bold" size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <StackPane.margin>
-                              <Insets right="20.0" top="-20.0" />
-                           </StackPane.margin>
+                        <StackPane prefHeight="46.0" prefWidth="53.0" styleClass="menu-items">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="menu-items">
+                                    <children>
+                                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../icons/icons8-notification-48.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </VBox>
+                                <HBox fx:id="notiCircle1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red; -fx-background-radius: 10;">
+                                    <children>
+                                        <Label fx:id="notiNum1" text="10" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial Bold" size="11.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <StackPane.margin>
+                                        <Insets right="20.0" top="-20.0" />
+                                    </StackPane.margin>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                        <TextField prefHeight="32.0" prefWidth="268.0" promptText="Search y phone">
+                            <HBox.margin>
+                                <Insets left="20.0" right="20.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="95.0" spacing="6.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="menu-items">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" right="1.0" top="5.0" />
+                                    </HBox.margin>
+                                    <children>
+                                        <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../icons/icons8-close-48.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="close">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" right="1.0" top="5.0" />
+                                    </HBox.margin>
+                                    <children>
+                                        <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../icons/icons8-close-48.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <HBox.margin>
+                                <Insets right="10.0" />
+                            </HBox.margin>
                         </HBox>
-                     </children>
-                  </StackPane>
-                  <TextField prefHeight="32.0" prefWidth="268.0" promptText="Search y phone">
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <HBox alignment="CENTER" prefHeight="46.0" prefWidth="95.0" spacing="6.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="menu-items">
-                           <HBox.margin>
-                              <Insets bottom="5.0" right="1.0" top="5.0" />
-                           </HBox.margin>
-                           <children>
-                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/icons8-close-48.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="32.0" prefWidth="38.0" styleClass="close">
-                           <HBox.margin>
-                              <Insets bottom="5.0" right="1.0" top="5.0" />
-                           </HBox.margin>
-                           <children>
-                              <ImageView fitHeight="26.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../icons/icons8-close-48.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </HBox>
-               </children>
-               <BorderPane.margin>
-                  <Insets left="201.0" />
-               </BorderPane.margin>
-            </HBox>
-         </top>
-      </BorderPane>
-   </children>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets left="201.0" />
+                    </BorderPane.margin>
+                </HBox>
+            </top>
+        </BorderPane>
+    </children>
 </StackPane>

@@ -24,7 +24,7 @@
         </ImageView>
         <TextField fx:id="firstName" layoutX="127.0" layoutY="73.0" prefHeight="35.0" prefWidth="347.0" promptText="e.g mohamed " />
         <TextField fx:id="lastName" layoutX="560.0" layoutY="72.0" prefHeight="35.0" prefWidth="347.0" promptText="e.g ogleh" />
-        <TextField fx:id="phone" layoutX="127.0" layoutY="143.0" prefHeight="35.0" prefWidth="347.0" promptText="e.g (063)XXX-XXX" />
+        <TextField fx:id="phone" layoutX="127.0" layoutY="145.0" prefHeight="35.0" prefWidth="347.0" promptText="e.g (063)XXX-XXX" />
         <JFXRadioButton fx:id="male" layoutX="560.0" layoutY="163.0" text="Male" textFill="#46749f" />
         <JFXRadioButton fx:id="female" layoutX="743.0" layoutY="163.0" text="Female" textFill="#46749f" />
         <Label layoutX="127.0" layoutY="48.0" prefHeight="16.0" prefWidth="90.0" text="first name" textFill="#46749f">
@@ -32,7 +32,7 @@
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <Label layoutX="126.0" layoutY="120.0" prefHeight="16.0" prefWidth="90.0" text="phone" textFill="#46749f">
+        <Label layoutX="126.0" layoutY="122.0" prefHeight="16.0" prefWidth="90.0" text="phone" textFill="#46749f">
             <font>
                 <Font name="Arial Bold" size="14.0" />
             </font>
@@ -71,8 +71,8 @@
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <DatePicker fx:id="expPicker" layoutX="560.0" layoutY="295.0" prefHeight="36.0" prefWidth="347.0" promptText="dd-mm-yyyy" />
-        <JFXCheckBox fx:id="checkPoxing" checkedColor="#2b5448" layoutX="127.0" layoutY="460.0" text="Poxing" textFill="#2d403a" unCheckedColor="#4a4545">
+        <DatePicker fx:id="expPicker" editable="false" layoutX="560.0" layoutY="295.0" prefHeight="36.0" prefWidth="347.0" promptText="dd-mm-yyyy" />
+        <JFXCheckBox fx:id="checkPoxing" checkedColor="#2b5448" layoutX="127.0" layoutY="456.0" text="Poxing" textFill="#2d403a" unCheckedColor="#4a4545">
             <font>
                 <Font size="13.0" />
             </font>
@@ -116,27 +116,35 @@
                 <Font name="Arial Black" size="16.0" />
             </font>
         </Label>
-        <Label fx:id="discountValidation" layoutX="652.0" layoutY="239.0" text="Halkan Numbers qudha loo ogol yahay" textFill="#9e7e47" visible="false">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font></Label>
-      <Label fx:id="phoneValidation" layoutX="127.0" layoutY="184.0" text="Halkan Numbers qudha loo ogol yahay" textFill="#9e7e47" visible="false">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font></Label>
-      <Label fx:id="dateValidation" layoutX="572.0" layoutY="340.0" styleClass="validation-label" textFill="#9e7e47">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font></Label>
-      <Label fx:id="weightValidation" layoutX="126.0" layoutY="426.0" text="Halkan Numbers qudha loo ogol yahay" textFill="#9e7e47" visible="false">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="amountValidation" layoutX="125.0" layoutY="426.0" prefHeight="16.0" prefWidth="162.0" text="Only numbers will except" textFill="#9e7e47" visible="false">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
+        <Label fx:id="weightValidation" layoutX="126.0" layoutY="426.0" text="Halkan Numbers qudha loo ogol yahay" textFill="#9e7e47" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="amountValidation" layoutX="125.0" layoutY="426.0" prefHeight="16.0" prefWidth="162.0" text="Only numbers will except" textFill="#9e7e47" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="phoneValidationLabel" layoutX="127.0" layoutY="185.0" text="Halkan Numbers qudha loo ogol yahay!" textFill="RED" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="discountValidationLabel" layoutX="652.0" layoutY="236.0" text="Halkan Numbers qudha loo ogol yahay!" textFill="RED" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="dateValidationLabel" layoutX="563.0" layoutY="334.0" text="Halkan Numbers qudha loo ogol yahay!" textFill="RED" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
+        <Label fx:id="weightValidationLabel" layoutX="127.0" layoutY="423.0" text="Halkan Numbers qudha loo ogol yahay!" textFill="RED" visible="false">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

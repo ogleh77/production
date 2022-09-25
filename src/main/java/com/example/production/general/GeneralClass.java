@@ -1,15 +1,24 @@
 package com.example.production.general;
 
+import animatefx.animation.FadeIn;
 import animatefx.animation.Shake;
+import animatefx.animation.SlideInRight;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import net.synedra.validatorfx.Decoration;
+import net.synedra.validatorfx.ValidationMessage;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class GeneralClass {
@@ -84,8 +93,8 @@ public class GeneralClass {
                             discountVal.setVisible(false);
                         }
 
-                    } catch (Exception e){
-                        System.out.println("Ex occur "+e.getLocalizedMessage());
+                    } catch (Exception e) {
+                        System.out.println("Ex occur " + e.getLocalizedMessage());
                     }
 
 
@@ -134,7 +143,7 @@ public class GeneralClass {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (textField.getText().matches("[0-9]*")||(textField.getText().isEmpty() && textField.getText().isBlank())) {
+                if (textField.getText().matches("[0-9]*") || (textField.getText().isEmpty() && textField.getText().isBlank())) {
                     weightValid = true;
                     weight.setVisible(false);
 
@@ -248,4 +257,72 @@ public class GeneralClass {
     public boolean isWeightValid() {
         return weightValid;
     }
+
+    public Decoration messageDecorator(ValidationMessage m) {
+        return new Decoration() {
+            @Override
+            public void remove(Node target) {
+                ((Label) target).setText(m.getText());
+                ((Label) target).setVisible(false);
+            }
+
+            @Override
+            public void add(Node target) {
+
+                ((Label) target).setText("ER - " + m.getText());
+                ((Label) target).setVisible(true);
+
+            }
+        };
+    }
+
+    //Check if text field text isn't empty and input is not digits
+    protected FXMLLoader openWideWindow(String url, BorderPane borderPane, StackPane stack) throws IOException {
+        if (stack.getChildren().size() > 1) stack.getChildren().remove(stack.getChildren().get(1));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+        AnchorPane anchorPane = loader.load();
+//        if (borderPane.getCenter().getId().equals(anchorPane.getId())) {
+//            System.out.println("Already opened.....");
+//        }
+        SlideInRight slideInRight = new SlideInRight(anchorPane);
+        slideInRight.play();
+        borderPane.setCenter(anchorPane);
+
+        //Insha Allah laba jeer furanka ka jooji System.out.println(borderPane.getCenter().getId());
+        return loader;
+    }
+
+    protected FXMLLoader openShortWindow(String url, StackPane stack) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+        AnchorPane anchorPane = null;
+        if (stack.getChildren().size() > 1) stack.getChildren().remove(stack.getChildren().get(1));
+        anchorPane = loader.load();
+//        if (stack.getChildren().get(0).getId().equals(anchorPane.getId())) {
+//            System.out.println("Already opened..");
+//        }
+        new FadeIn(anchorPane).play();
+        stack.getChildren().add(anchorPane);
+        return loader;
+    }
+
+    protected FXMLLoader openTabPane(String url, StackPane stack) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
+        TabPane tabPane = null;
+        if (stack.getChildren().size() > 1) {
+            stack.getChildren().remove(stack.getChildren().get(1));
+        }
+        tabPane = loader.load();
+        //new FadeIn(anchorPane).play();
+        stack.getChildren().add(tabPane);
+        return loader;
+    }
+
+    public boolean checkDigitsAndNullable(TextField textField) {
+
+        return (!textField.getText().matches("[0-9]*")
+                && (!textField.getText().isBlank() && !textField.getText().isBlank()));
+
+    }
+
+
 }

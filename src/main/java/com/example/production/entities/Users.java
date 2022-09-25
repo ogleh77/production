@@ -4,7 +4,7 @@ public class Users {
     private int userId;
     private String firstName;
     private String lastName;
-    private int phone;
+    private String phone;
     private String gender;
     private String shift;
     private String username;
@@ -12,7 +12,7 @@ public class Users {
     private String image;
     private String role;
 
-    public Users(int userId, String firstName, String lastName, int phone, String gender, String shift, String username, String password, String image, String role) {
+    public Users(int userId, String firstName, String lastName, String phone, String gender, String shift, String username, String password, String image, String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,7 +37,7 @@ public class Users {
         return lastName;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 

@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cd9ce0b-6a62-456c-b885-1e402a9f1884" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/production/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/RegistrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/entities/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/entities/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/general/GeneralClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/general/GeneralClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/files" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/files" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/registrations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/registrations.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,14 +25,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/controller/RegistrationController.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,25 +48,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mrd/Documents/production/src/main/java/com/example/production&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "/Users/mrd/Documents/production/src/main/java/com/example/production/controller",
+    "list.type.of.created.stylesheet": "CSS",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/example/production" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/production/controller" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/views" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/icons" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/styles" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/views/services" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/styles" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/svg-images" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/icons" />
     </key>
@@ -123,6 +136,51 @@
       <workItem from="1663779213357" duration="7000" />
       <workItem from="1663779599994" duration="9000" />
       <workItem from="1663782580919" duration="1352000" />
+      <workItem from="1663850786214" duration="327000" />
+      <workItem from="1663853309855" duration="9000" />
+      <workItem from="1663853335225" duration="55000" />
+      <workItem from="1663918598384" duration="183000" />
+      <workItem from="1663918795809" duration="383000" />
+      <workItem from="1663919274515" duration="141000" />
+      <workItem from="1663919526397" duration="10388000" />
+      <workItem from="1663951844536" duration="30000" />
+      <workItem from="1663952069441" duration="146000" />
+      <workItem from="1663952240709" duration="447000" />
+      <workItem from="1663952722959" duration="75000" />
+      <workItem from="1663952844292" duration="350000" />
+      <workItem from="1663953217455" duration="1463000" />
+      <workItem from="1663957946246" duration="1921000" />
+      <workItem from="1663966270195" duration="111000" />
+      <workItem from="1663966434913" duration="1362000" />
+      <workItem from="1664007524098" duration="283000" />
+      <workItem from="1664007886046" duration="126000" />
+      <workItem from="1664008049369" duration="582000" />
+      <workItem from="1664008672982" duration="59000" />
+      <workItem from="1664008767923" duration="372000" />
+      <workItem from="1664009172957" duration="62000" />
+      <workItem from="1664009304813" duration="47000" />
+      <workItem from="1664009379047" duration="64000" />
+      <workItem from="1664009455513" duration="27000" />
+      <workItem from="1664009493729" duration="55000" />
+      <workItem from="1664009568500" duration="16000" />
+      <workItem from="1664009612837" duration="83000" />
+      <workItem from="1664009744971" duration="15000" />
+      <workItem from="1664009770750" duration="43000" />
+      <workItem from="1664009827075" duration="37000" />
+      <workItem from="1664009923474" duration="44000" />
+      <workItem from="1664009992824" duration="76000" />
+      <workItem from="1664010289674" duration="718000" />
+      <workItem from="1664011057432" duration="1123000" />
+      <workItem from="1664012420529" duration="937000" />
+      <workItem from="1664016637862" duration="1468000" />
+      <workItem from="1664018579338" duration="235000" />
+      <workItem from="1664018832850" duration="603000" />
+      <workItem from="1664019538934" duration="752000" />
+      <workItem from="1664020380610" duration="77000" />
+      <workItem from="1664020483305" duration="378000" />
+      <workItem from="1664020871668" duration="237000" />
+      <workItem from="1664021166388" duration="758000" />
+      <workItem from="1664021998690" duration="850000" />
     </task>
     <servers />
   </component>

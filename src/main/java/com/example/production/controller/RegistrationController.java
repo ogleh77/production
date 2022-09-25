@@ -1,45 +1,52 @@
 package com.example.production.controller;
 
 import com.example.production.entities.Customers;
+import com.example.production.entities.Users;
+import com.example.production.entities.services.Box;
 import com.example.production.general.GeneralClass;
+import com.example.production.models.Model;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import net.synedra.validatorfx.Check;
+import net.synedra.validatorfx.Validator;
 
-import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class RegistrationController extends GeneralClass implements Initializable {
+
     @FXML
     private TextField amountPaid;
 
     @FXML
-    private ComboBox<String> boxChooser;
+    private Label amountValidation;
+
+    @FXML
+    private ComboBox<Box> boxChooser;
 
     @FXML
     private JFXCheckBox checkPoxing;
 
     @FXML
-    private JFXButton clear;
+    private Label dateValidationLabel;
 
     @FXML
     private TextField discount;
+
+    @FXML
+    private Label discountValidationLabel;
 
     @FXML
     private DatePicker expPicker;
@@ -69,127 +76,192 @@ public class RegistrationController extends GeneralClass implements Initializabl
     private TextField phone;
 
     @FXML
-    private ComboBox<String> shift;
+    private Label phoneValidationLabel;
 
     @FXML
-    private Label validationLabel;
+    private ComboBox<String> shift;
+    @FXML
+    private JFXButton salleryBtn;
 
     @FXML
     private TextField weight;
-    @FXML
-    private Label phoneValidation;
-    @FXML
-    private Label discountValidation;
 
-    @FXML
-    private Label dateValidation;
     @FXML
     private Label weightValidation;
-    boolean discountVal;
+
+    @FXML
+    private Label weightValidationLabel;
+
+    private int maxDiscount = 3;
+    private final Validator validator;
+    private final ToggleGroup genderGroup;
     private final ObservableList<Control> mandotaryFields;
-    private final ObservableList<Control> preInValidFields;
-    private Stage stage;
-    private File selectedFile;
 
-    private LocalDate today;
-
-    private ToggleGroup genderGroup;
+    private Users activeUser;
+    private Model model;
 
     public RegistrationController() {
+        validator = new Validator();
+        this.genderGroup = new ToggleGroup();
         this.mandotaryFields = FXCollections.observableArrayList();
-        this.preInValidFields = FXCollections.observableArrayList();
-
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
-            stage = (Stage) firstName.getScene().getWindow();
-        });
-        mandotaryFields.addAll(firstName, lastName, phone, paidby, amountPaid, shift, expPicker, discount);
-        preInValidFields.addAll(weight, discount, phone, expPicker);
-        shift.setItems(getShift());
-        paidby.setItems(getPaidBy());
-        genderGroup = new ToggleGroup();
-
-        male.setToggleGroup(genderGroup);
-        female.setToggleGroup(genderGroup);
-//        discount.setText(String.valueOf(0));
-//        weight.setText(String.valueOf(65));
-
-//        System.out.println(discount.getText());
-//        System.out.println(weight.getText());
-        discountValidation(discount, discountValidation, 3.0);
-        phoneValidation(phone, phoneValidation);
-        dateValidation(expPicker, dateValidation);
-        weightValidation(weight, weightValidation);
-
-
-    }
-
-
-    @FXML
-    void saveHandler(ActionEvent event) {
-//        System.out.println("discount validation is " + isDiscountValid());
-//        System.out.println("phone validation is " + isPhoneValid());
-//        System.out.println("Date validation is " + isDateValid());
-//        System.out.println("Wehight validation is " + isWeightValid());
-        String gender = chooseGender(male, female);
-
-
-        if (isValid(mandotaryFields, genderGroup) && isDiscountValid() && isPhoneValid() && isDateValid() && isWeightValid()) {
-            System.out.println("You good to go..");
-            boolean poxing = checkPoxing.isSelected();
-            double disc = Double.parseDouble(discount.getText());
-            double amount = (Double.parseDouble(amountPaid.getText()) - disc);
+            paidby.setItems(getPaidBy());
+            shift.setItems(getShift());
+            male.setToggleGroup(genderGroup);
+            female.setToggleGroup(genderGroup);
+            mandotaryFields.addAll(firstName, lastName, phone, paidby, amountPaid, shift, expPicker, discount);
 
             try {
-                double weghter = Double.parseDouble(weight.getText().trim());
-                Customers insertedCustomer = new Customers(0,
-                        firstName.getText().trim(), lastName.getText().trim(), phone.getText().trim(),
-                        gender, paidby.getValue(), amount,
-                        disc, shift.getValue(), expPicker.getValue(), weghter,
-                        null, poxing, "Empty", "Ogleh", LocalDate.now()
-                );
-
-
-                System.out.println(insertedCustomer);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                for (Box box : model.getBoxDAO().getAll()) {
+                    if (box.isReady()) {
+                        boxChooser.getItems().add(box);
+                    }
+    
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
+        });
 
+        validator.createCheck().dependsOn("phone", phone.textProperty())
+                .withMethod(c -> {
+                }).withMethod(this::phoneCheck)
+                .decoratingWith(this::messageDecorator)
+                .decorates(phoneValidationLabel)
+                //.decorates(discountValidation).
+                .immediate();
 
-        } else {
-            System.out.println("Invalid");
-        }
+        validator.createCheck().dependsOn("discount", discount.textProperty())
+                .withMethod(c -> {
+                }).withMethod(this::discountCheck)
+                .decoratingWith(this::messageDecorator)
+                .decorates(discountValidationLabel)
+                //.decorates(discountValidation).
+                .immediate();
+
+        validator.createCheck().dependsOn("weight", weight.textProperty())
+                .withMethod(c -> {
+                }).withMethod(this::weightCheck)
+                .decoratingWith(this::messageDecorator)
+                .decorates(weightValidationLabel)
+                //.decorates(discountValidation).
+                .immediate();
+
+        validator.createCheck().dependsOn("date", expPicker.valueProperty())
+                .withMethod(c -> {
+                }).withMethod(this::dateCheck)
+                .decoratingWith(this::messageDecorator)
+                .decorates(dateValidationLabel)
+                //.decorates(discountValidation).
+                .immediate();
+
 
     }
 
     @FXML
     void imageUploadHandler(ActionEvent event) {
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Soo dooro sawirka");
-        selectedFile = fileChooser.showOpenDialog(stage);
-        if (selectedFile != null) {
-            Image image = new Image(selectedFile.toURI().toString());
-            imgView.setImage(image);
-            //anImage.setImage(image1);
-            imgView.setFitWidth(400);
-            imgView.setFitHeight(200);
-            imgView.setPreserveRatio(true);
-            imgView.setSmooth(true);
-            imgView.setCache(true);
-        } else {
+    }
 
+    @FXML
+    void saveHandler(ActionEvent event) {
+        if (isValid(mandotaryFields, genderGroup) && validator.getValidationResult().getMessages().isEmpty()) {
+            System.out.println("Good to go");
+            String ganderVal = chooseGender(male, female);
+            double aPaidVal = Double.parseDouble(get(amountPaid));
+            double disCountVal = Double.parseDouble(get(amountPaid));
+            double weightVal = Double.parseDouble(get(weight));
+            Box box;
+            if (boxChooser.getValue() != null) {
+                box = boxChooser.getValue();
+
+            } else {
+                box = new Box(0, null, 0, false);
+            }
+
+
+            try {
+                Customers customer = new Customers(0, get(firstName), get(lastName), get(phone), ganderVal,
+                        paidby.getValue(), aPaidVal, disCountVal, shift.getValue(), expPicker.getValue(), weightVal,
+                        box, checkPoxing.isSelected(), "Empry", activeUser.getUsername(), LocalDate.now());
+                model.getCustomerDAO().insert(customer);
+
+                model.getBoxDAO().update(box);
+                System.out.println(customer);
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        } else {
+            System.out.println("Not valid...");
         }
 
+    }
 
-//Sax image ka
+    //Return value of textFiled withTrimed¬
+    private String get(TextField textField) {
+        return textField.getText().trim();
     }
 
     @FXML
     void update(ActionEvent event) {
 
     }
+
+    private void phoneCheck(Check.Context c) {
+        if (checkDigitsAndNullable(phone)) {
+            c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+        } else if (phone.getText().length() < 7) {
+            c.error("Lanbarku 7 digit kama yaraan karo!");
+        }
+
+    }
+
+    private void weightCheck(Check.Context c) {
+        if (checkDigitsAndNullable(weight)) {
+            c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+        } else if (weight.getText().length() > 2) {
+            c.error("Ma qofbaa jira 100kg dhafay ");
+        }
+
+    }
+
+    private void discountCheck(Check.Context c) {
+        double discountAmount;
+        if (checkDigitsAndNullable(discount)) {
+            c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+
+        } else if (!discount.getText().isBlank() && !discount.getText().isBlank()) {
+            discountAmount = Double.parseDouble(discount.getText().trim());
+            if (discountAmount > maxDiscount) {
+                c.error("Fadlan discount ku kama badan karo " + maxDiscount);
+            }
+
+        }
+
+
+    }
+
+    private void dateCheck(Check.Context c) {
+        // double discountAmount;
+
+        if (expPicker.getValue() != null && expPicker.getValue().isBefore(LocalDate.now())) {
+            c.error("Dooro wakhti ka danbeya manta tar: " + LocalDate.now());
+
+        }
+
+    }
+
+
+    public void setActiveUser(Users activeUser, Model model) {
+        this.activeUser = activeUser;
+        this.model = model;
+    }
 }
+
+
