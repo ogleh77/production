@@ -26,16 +26,16 @@ public class GymDAO extends Repo<Gym> {
 
     @Override
     public void update(Gym gym) throws SQLException {
-//        String updateGym = "UPDATE gym SET gym_name='" + gym.getGymName() + "',fitness_cost=" + gym.getFitnessCost() +
-//                ",poxing_cost=" + gym.getPoxingCost() + "," +
-//                "max_discount=" + gym.getMaxDiscount() + " WHERE gym_id=1";
-//        Connection connection = getConnection();
-//        Statement statement = connection.createStatement();
-//
-//        statement.executeUpdate(updateGym);
-//
-//        connection.close();
-//        statement.close();
+        String updateGym = "UPDATE gym SET gym_name='" + gym.getGymName() + "',fitness_cost=" + gym.getFitnessCost() +
+                ",poxing_cost=" + gym.getPoxingCost() + "," +
+                "max_discount=" + gym.getMaxDiscount() + " WHERE gym_id=1";
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+
+        statement.executeUpdate(updateGym);
+
+        connection.close();
+        statement.close();
     }
 
     @Override

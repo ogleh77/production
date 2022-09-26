@@ -24,8 +24,8 @@
                     <children>
                         <VBox fx:id="profilePane" alignment="CENTER" prefHeight="109.0" prefWidth="200.0" styleClass="profile-pane">
                             <children>
-                                <Circle fx:id="imageView" fill="DODGERBLUE" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
-                                <Label styleClass="profile-label" text="Mohamed Ogleh" textFill="#8fe3cf">
+                                <Circle fx:id="imageView" fill="DODGERBLUE" radius="38.0" stroke="#0252f2" strokeType="INSIDE" />
+                                <Label fx:id="activeUserName" styleClass="profile-label" text="Mohamed Ogleh" textFill="#8fe3cf">
                                     <font>
                                         <Font name="Arial Black" size="13.0" />
                                     </font>
@@ -76,11 +76,34 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <MenuButton mnemonicParsing="false" popupSide="RIGHT" styleClass="menu-btn" text="Serves" textFill="#c6d0cd">
+                  <JFXButton onAction="#recycleHandler" prefHeight="38.0" prefWidth="148.0" styleClass="menu-btn" text="Recycle bin">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/icons8-recycle-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                        <MenuButton mnemonicParsing="false" popupSide="RIGHT" styleClass="menu-btn2" text="Serves" textFill="#c6d0cd">
                             <items>
 
-                                <MenuItem fx:id="userCreation" mnemonicParsing="false" onAction="#userCreationHandler" text="Create new user" />
-                                <MenuItem mnemonicParsing="false" text="Gym operation" />
+                                <MenuItem fx:id="userCreation" mnemonicParsing="false" onAction="#userCreationHandler" text="Create new user">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/icons8-user-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                                <MenuItem mnemonicParsing="false" onAction="#gymHanlder" text="Gym operation">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/icons8-dumbbell-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
                             </items>
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">

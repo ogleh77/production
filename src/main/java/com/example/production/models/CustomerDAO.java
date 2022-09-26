@@ -90,6 +90,26 @@ public class CustomerDAO extends Repo<Customers> {
     }
 
 
+    public ObservableList<Customers> getOutdated() throws SQLException {
+        ObservableList<Customers> customers = FXCollections.observableArrayList();
+        Customers customer = null;
+        Box box = null;
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+
+        ResultSet rs = statement.executeQuery("SELECT * FROM recycle");
+
+        while (rs.next()) {
+
+
+            customer = getCustomers(box, rs);
+            customers.add(customer);
+        }
+        rs.close();
+        statement.close();
+        return customers;
+    }
+
     public void qualification(Customers customer, LocalDate today) throws SQLException {
         Statement st = connection.createStatement();
 

@@ -9,6 +9,13 @@
     -fx-font-size: 14;
     -fx-pref-width: 150;
 }
+.menu-btn2 {
+    -fx-background-color: #3a6188;
+    -fx-text-fill: #dfe7e5;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14;
+    -fx-pref-width: 150;
+}
 .menu-btn:hover {
     -fx-background-color: #46749f;
     -fx-cursor: hand;

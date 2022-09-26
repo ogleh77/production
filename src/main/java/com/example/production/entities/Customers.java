@@ -4,6 +4,7 @@ package com.example.production.entities;
 import com.example.production.entities.services.Box;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.ObservableList;
+import javafx.scene.shape.Circle;
 
 import java.time.LocalDate;
 
@@ -30,6 +31,8 @@ public class Customers {
     private JFXButton update;
     private JFXButton delete;
 
+    private Circle circle;
+
 
     public Customers(int costumerId, String firstName, String lastName, String phone, String gender, String paidBy, double paid, double discount, String shift, LocalDate expDate, double weight, Box box, boolean poxing, String image, String userAdded, LocalDate dateJoined) {
         this.costumerId = costumerId;
@@ -54,7 +57,7 @@ public class Customers {
         preview.setStyle("-fx-background-color: #06ffe6;-fx-text-fill: white");
         update.setStyle("-fx-background-color: dodgerblue;-fx-text-fill: white");
         delete.setStyle("-fx-background-color: red;-fx-text-fill: white");
-
+        circle = new Circle(20);
     }
 
 
@@ -132,6 +135,10 @@ public class Customers {
 
     public JFXButton getDelete() {
         return delete;
+    }
+
+    public Circle getCircle() {
+        return circle;
     }
 
     public void remove(ObservableList<Customers> customer) {

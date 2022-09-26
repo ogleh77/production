@@ -1316,409 +1316,445 @@
     <table id="482" parent="166" name="box"/>
     <table id="483" parent="166" name="customer"/>
     <table id="484" parent="166" name="daily_report"/>
-    <table id="485" parent="166" name="monthly_report"/>
-    <table id="486" parent="166" name="recycle"/>
-    <table id="487" parent="166" name="sqlite_master">
+    <table id="485" parent="166" name="gym"/>
+    <table id="486" parent="166" name="monthly_report"/>
+    <table id="487" parent="166" name="recycle"/>
+    <table id="488" parent="166" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="488" parent="166" name="sqlite_sequence">
+    <table id="489" parent="166" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <table id="489" parent="166" name="users"/>
-    <column id="490" parent="482" name="box_id">
+    <table id="490" parent="166" name="users"/>
+    <column id="491" parent="482" name="box_id">
       <AutoIncrement>1</AutoIncrement>
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="491" parent="482" name="box_title">
+    <column id="492" parent="482" name="box_title">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="492" parent="482" name="box_cost">
+    <column id="493" parent="482" name="box_cost">
       <DataType>double|0s</DataType>
       <DefaultExpression>3.0</DefaultExpression>
       <Position>3</Position>
     </column>
-    <column id="493" parent="482" name="box_status">
+    <column id="494" parent="482" name="box_status">
       <DataType>boolean|0s</DataType>
       <DefaultExpression>true</DefaultExpression>
       <Position>4</Position>
     </column>
-    <key id="494" parent="482">
+    <key id="495" parent="482">
       <ColNames>box_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="495" parent="483" name="costumer_id">
+    <column id="496" parent="483" name="costumer_id">
       <AutoIncrement>1</AutoIncrement>
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="496" parent="483" name="first_name">
+    <column id="497" parent="483" name="first_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="497" parent="483" name="last_name">
+    <column id="498" parent="483" name="last_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="498" parent="483" name="phone">
+    <column id="499" parent="483" name="phone">
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="499" parent="483" name="gender">
+    <column id="500" parent="483" name="gender">
       <DataType>VARCHAR(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="500" parent="483" name="paid_by">
+    <column id="501" parent="483" name="paid_by">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="501" parent="483" name="paid">
+    <column id="502" parent="483" name="paid">
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="502" parent="483" name="discount">
+    <column id="503" parent="483" name="discount">
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="503" parent="483" name="shift">
+    <column id="504" parent="483" name="shift">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="504" parent="483" name="exp_date">
+    <column id="505" parent="483" name="exp_date">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="505" parent="483" name="weight">
+    <column id="506" parent="483" name="weight">
       <DataType>double|0s</DataType>
       <DefaultExpression>65</DefaultExpression>
       <Position>11</Position>
     </column>
-    <column id="506" parent="483" name="box_fk">
+    <column id="507" parent="483" name="box_fk">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <Position>12</Position>
     </column>
-    <column id="507" parent="483" name="poxing">
+    <column id="508" parent="483" name="poxing">
       <DataType>boolean|0s</DataType>
       <DefaultExpression>false</DefaultExpression>
       <Position>13</Position>
     </column>
-    <column id="508" parent="483" name="image">
+    <column id="509" parent="483" name="image">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="509" parent="483" name="user_added">
+    <column id="510" parent="483" name="user_added">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="510" parent="483" name="date_joined">
+    <column id="511" parent="483" name="date_joined">
       <DataType>VARCHAR(20)|0s</DataType>
       <DefaultExpression>(strftime(&apos;%Y-%m-%d&apos;, &apos;now&apos;))</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <foreign-key id="511" parent="483" name="fk_box">
+    <foreign-key id="512" parent="483" name="fk_box">
       <ColNames>box_fk</ColNames>
       <RefColNames>box_id</RefColNames>
       <RefTableName>box</RefTableName>
     </foreign-key>
-    <index id="512" parent="483" name="sqlite_autoindex_customer_1">
+    <index id="513" parent="483" name="sqlite_autoindex_customer_1">
       <ColNames>phone</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="513" parent="483">
+    <key id="514" parent="483">
       <ColNames>costumer_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="514" parent="483">
+    <key id="515" parent="483">
       <ColNames>phone</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_customer_1</UnderlyingIndexName>
     </key>
-    <trigger id="515" parent="483" name="trigger_add_recycle">
+    <trigger id="516" parent="483" name="trigger_add_recycle">
       <Events>D</Events>
       <SourceTextLength>505</SourceTextLength>
       <Turn>after-row</Turn>
     </trigger>
-    <column id="516" parent="484" name="report_day">
+    <column id="517" parent="484" name="report_day">
       <DataType>VARCHAR(50)|0s</DataType>
       <DefaultExpression>(strftime(&apos;%Y-%m-%d&apos;, &apos;now&apos;))</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="517" parent="484" name="registration">
+    <column id="518" parent="484" name="registration">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="518" parent="484" name="short_registration">
+    <column id="519" parent="484" name="short_registration">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="519" parent="484" name="male">
+    <column id="520" parent="484" name="male">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="520" parent="484" name="female">
+    <column id="521" parent="484" name="female">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="521" parent="484" name="vip_box">
+    <column id="522" parent="484" name="vip_box">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="522" parent="485" name="report_month">
+    <column id="523" parent="485" name="gym_id">
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="524" parent="485" name="gym_name">
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="525" parent="485" name="fitness_cost">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="526" parent="485" name="poxing_cost">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="527" parent="485" name="max_discount">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <index id="528" parent="485" name="sqlite_autoindex_gym_1">
+      <ColNames>gym_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="529" parent="485">
+      <ColNames>gym_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_gym_1</UnderlyingIndexName>
+    </key>
+    <column id="530" parent="486" name="report_month">
       <DataType>VARCHAR(50)|0s</DataType>
       <DefaultExpression>(strftime(&apos;%Y-%m&apos;, &apos;now&apos;))</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="523" parent="485" name="total_registrations">
+    <column id="531" parent="486" name="total_registrations">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="524" parent="485" name="total_short_registrations">
+    <column id="532" parent="486" name="total_short_registrations">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="525" parent="485" name="total_male">
+    <column id="533" parent="486" name="total_male">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="526" parent="485" name="total_female">
+    <column id="534" parent="486" name="total_female">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="527" parent="485" name="total_vip_box">
+    <column id="535" parent="486" name="total_vip_box">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="528" parent="486" name="costumer_id">
+    <column id="536" parent="487" name="costumer_id">
       <AutoIncrement>1</AutoIncrement>
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="529" parent="486" name="first_name">
+    <column id="537" parent="487" name="first_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="530" parent="486" name="last_name">
+    <column id="538" parent="487" name="last_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="531" parent="486" name="phone">
+    <column id="539" parent="487" name="phone">
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="532" parent="486" name="gender">
+    <column id="540" parent="487" name="gender">
       <DataType>VARCHAR(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="533" parent="486" name="paid_by">
+    <column id="541" parent="487" name="paid_by">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="534" parent="486" name="paid">
+    <column id="542" parent="487" name="paid">
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="535" parent="486" name="discount">
+    <column id="543" parent="487" name="discount">
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="536" parent="486" name="shift">
+    <column id="544" parent="487" name="shift">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="537" parent="486" name="exp_date">
+    <column id="545" parent="487" name="exp_date">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>10</Position>
     </column>
-    <column id="538" parent="486" name="weight">
+    <column id="546" parent="487" name="weight">
       <DataType>double|0s</DataType>
       <DefaultExpression>65</DefaultExpression>
       <Position>11</Position>
     </column>
-    <column id="539" parent="486" name="box_fk">
+    <column id="547" parent="487" name="box_fk">
       <DataType>INT|0s</DataType>
       <DefaultExpression>0</DefaultExpression>
       <Position>12</Position>
     </column>
-    <column id="540" parent="486" name="poxing">
+    <column id="548" parent="487" name="poxing">
       <DataType>boolean|0s</DataType>
       <DefaultExpression>false</DefaultExpression>
       <Position>13</Position>
     </column>
-    <column id="541" parent="486" name="image">
+    <column id="549" parent="487" name="image">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>14</Position>
     </column>
-    <column id="542" parent="486" name="user_added">
+    <column id="550" parent="487" name="user_added">
       <DataType>VARCHAR(20)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>15</Position>
     </column>
-    <column id="543" parent="486" name="date_joined">
+    <column id="551" parent="487" name="date_joined">
       <DataType>VARCHAR(20)|0s</DataType>
       <DefaultExpression>(strftime(&apos;%Y-%m-%d&apos;, &apos;now&apos;))</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>16</Position>
     </column>
-    <foreign-key id="544" parent="486" name="fk_box">
+    <foreign-key id="552" parent="487" name="fk_box">
       <ColNames>box_fk</ColNames>
       <RefColNames>box_id</RefColNames>
       <RefTableName>box</RefTableName>
     </foreign-key>
-    <index id="545" parent="486" name="sqlite_autoindex_recycle_1">
+    <index id="553" parent="487" name="sqlite_autoindex_recycle_1">
       <ColNames>phone</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="546" parent="486">
+    <key id="554" parent="487">
       <ColNames>costumer_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="547" parent="486">
+    <key id="555" parent="487">
       <ColNames>phone</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_recycle_1</UnderlyingIndexName>
     </key>
-    <column id="548" parent="487" name="type">
+    <column id="556" parent="488" name="type">
       <DataType>TEXT|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="549" parent="487" name="name">
+    <column id="557" parent="488" name="name">
       <DataType>TEXT|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="550" parent="487" name="tbl_name">
+    <column id="558" parent="488" name="tbl_name">
       <DataType>TEXT|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="551" parent="487" name="rootpage">
+    <column id="559" parent="488" name="rootpage">
       <DataType>INT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="552" parent="487" name="sql">
+    <column id="560" parent="488" name="sql">
       <DataType>TEXT|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="553" parent="488" name="name">
+    <column id="561" parent="489" name="name">
       <Position>1</Position>
     </column>
-    <column id="554" parent="488" name="seq">
+    <column id="562" parent="489" name="seq">
       <Position>2</Position>
     </column>
-    <column id="555" parent="489" name="user_id">
+    <column id="563" parent="490" name="user_id">
       <AutoIncrement>1</AutoIncrement>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="556" parent="489" name="first_name">
+    <column id="564" parent="490" name="first_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="557" parent="489" name="last_name">
+    <column id="565" parent="490" name="last_name">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="558" parent="489" name="phone">
+    <column id="566" parent="490" name="phone">
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="559" parent="489" name="gender">
+    <column id="567" parent="490" name="gender">
       <DataType>VARCHAR(10)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="560" parent="489" name="shift">
+    <column id="568" parent="490" name="shift">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="561" parent="489" name="username">
+    <column id="569" parent="490" name="username">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="562" parent="489" name="password">
+    <column id="570" parent="490" name="password">
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <column id="563" parent="489" name="image">
+    <column id="571" parent="490" name="image">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>9</Position>
     </column>
-    <column id="564" parent="489" name="role">
+    <column id="572" parent="490" name="role">
       <DataType>Varchar(10)|0s</DataType>
       <Position>10</Position>
     </column>
-    <index id="565" parent="489" name="sqlite_autoindex_users_1">
+    <index id="573" parent="490" name="sqlite_autoindex_users_1">
       <ColNames>phone</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="566" parent="489" name="sqlite_autoindex_users_2">
+    <index id="574" parent="490" name="sqlite_autoindex_users_2">
       <ColNames>username</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="567" parent="489">
+    <key id="575" parent="490">
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="568" parent="489">
+    <key id="576" parent="490">
       <ColNames>phone</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_users_1</UnderlyingIndexName>
     </key>
-    <key id="569" parent="489">
+    <key id="577" parent="490">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>sqlite_autoindex_users_2</UnderlyingIndexName>
     </key>

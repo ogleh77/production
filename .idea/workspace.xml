@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cd9ce0b-6a62-456c-b885-1e402a9f1884" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5dc36d64-52d0-4c9d-b77f-163ce757f130.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5dc36d64-52d0-4c9d-b77f-163ce757f130.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/SplashScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/SplashScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/general/GeneralClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/general/GeneralClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/UserCreationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/controller/service/UserCreationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/entities/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/entities/Customers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/models/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/models/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/models/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/models/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/models/service/DailyReportDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/models/service/DailyReportDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/files" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/files" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/services/reports.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/services/reports.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/production/models/service/GymDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/production/models/service/GymDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/styles/dashboard-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/styles/dashboard-style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/registrations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/registrations.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/production/views/services/user-creation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/production/views/services/user-creation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +38,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/controller/HomeController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/controller/RegistrationController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/controller/service/RecycleController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/controller/service/UpdateController.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/production/models/CustomerDAO.java" root0="SKIP_INSPECTION" />
   </component>
@@ -57,38 +56,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mrd/Documents/production/src/main/java/com/example/production/controller&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "/Users/mrd/Documents/production/src/main/resources/com/example/production/styles",
+    "list.type.of.created.stylesheet": "CSS",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/java/com/example/production/controller" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/views" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/icons" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/styles" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/views/services" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/production/controller/service" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/production/models/service" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/production/controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/styles" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/svg-images" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/icons" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/production/styles" />
     </key>
   </component>
   <component name="RunManager">
@@ -196,7 +195,10 @@
       <workItem from="1664090923761" duration="941000" />
       <workItem from="1664092041794" duration="1545000" />
       <workItem from="1664093689310" duration="6037000" />
-      <workItem from="1664103748302" duration="3375000" />
+      <workItem from="1664103748302" duration="4828000" />
+      <workItem from="1664169257408" duration="3454000" />
+      <workItem from="1664173283856" duration="3202000" />
+      <workItem from="1664176664743" duration="429000" />
     </task>
     <servers />
   </component>

@@ -86,7 +86,10 @@
         <ComboBox fx:id="boxChooser" layoutX="270.0" layoutY="383.0" prefHeight="34.0" prefWidth="146.0" promptText="coose vip box" styleClass="combo-btn" />
         <VBox fx:id="imagePane" layoutX="641.0" layoutY="375.0" style="-fx-background-color: white;">
             <children>
-                <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imgView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/no-image.jpeg" />
+               </image></ImageView>
             </children>
             <effect>
                 <DropShadow height="35.66" radius="15.864999999999998" spread="0.77" width="29.8">

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="545.0" prefWidth="483.0" style="-fx-background-color: white;" stylesheets="@../../styles/user-creation-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.controller.service.GymController">
+    <children>
+        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="483.0" spacing="230.0" style="-fx-background-color: #132332;">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="182.0" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../icons/add-user.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="Gym configuration" textFill="#f2ecec">
+                            <font>
+                                <Font name="Arial Bold" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="61.0" spacing="10.0">
+                    <children>
+                        <HBox alignment="CENTER" onMouseClicked="#cancelHandler" prefHeight="36.0" prefWidth="58.0" styleClass="cancel-pane">
+                            <children>
+                                <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../icons/icons8--8112-50-f1f6f6.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <TextField fx:id="gymName" layoutX="25.0" layoutY="90.0" prefHeight="30.0" prefWidth="194.0" promptText="e.g togdheer gym" />
+        <Label layoutX="25.0" layoutY="67.0" text="Gym name" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="poxingCost" layoutX="29.0" layoutY="230.0" prefHeight="30.0" prefWidth="194.0" promptText="e.g $3.0" />
+        <TextField fx:id="fitnessCost" layoutX="27.0" layoutY="157.0" prefHeight="30.0" prefWidth="194.0" promptText="e.g $12.0" />
+        <Label layoutX="28.0" layoutY="133.0" text="fitness cost" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="28.0" layoutY="205.0" text="poxing cost" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="359.0" onAction="#createBoxHandler" prefHeight="36.0" prefWidth="182.0" styleClass="create-user-btn" text="Create Box" textFill="#aba2a2">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <TextField fx:id="maxDiscount" layoutX="28.0" layoutY="304.0" prefHeight="30.0" prefWidth="194.0" promptText="e.g $1" />
+        <Label layoutX="28.0" layoutY="281.0" text="maximun discount" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <ComboBox fx:id="boxView" layoutX="248.0" layoutY="87.0" prefHeight="30.0" prefWidth="194.0" promptText="Choose" />
+        <Label layoutX="248.0" layoutY="63.0" text="View aviable boxeses &amp; their cost" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="boxName" layoutX="261.0" layoutY="225.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
+        <Label layoutX="262.0" layoutY="170.0" text="Add new vip box" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial Black" size="13.0" />
+            </font>
+        </Label>
+        <Separator layoutX="245.0" layoutY="148.0" prefWidth="200.0" />
+        <Label layoutX="262.0" layoutY="200.0" text="name" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <TextField fx:id="boxCost" layoutX="261.0" layoutY="297.0" prefHeight="36.0" prefWidth="194.0" promptText="e.g $12.0" />
+        <Label layoutX="262.0" layoutY="272.0" text="cost" textFill="#6f6c6c">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <JFXButton buttonType="RAISED" layoutX="266.0" layoutY="426.0" onAction="#updateHandler" prefHeight="36.0" prefWidth="182.0" styleClass="load-mage-btn" text="Update gym info" textFill="#aba2a2">
+            <font>
+                <Font name="Arial" size="15.0" />
+            </font>
+        </JFXButton>
+        <Separator layoutX="238.0" layoutY="157.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="5.0" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../svg-images/undraw_Add_files_re_v09g.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="29.0" layoutY="487.0" text="Halkan ka bedel ">
+            <font>
+                <Font name="Arial Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="29.0" layoutY="508.0" text="shayga aad donayso inad wax ku darto ama wax ka bedesho" />
+    </children>
+    <effect>
+        <DropShadow height="56.58" radius="23.3425" width="38.79" />
+    </effect>
+</AnchorPane>

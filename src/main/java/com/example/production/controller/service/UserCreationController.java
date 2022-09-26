@@ -12,8 +12,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -61,6 +64,9 @@ public class UserCreationController extends GeneralClass implements Initializabl
 
     private ToggleGroup ganderToggle;
 
+    private File selectedFile;
+    private String imagePath;
+
     public UserCreationController() throws SQLException {
         ganderToggle = new ToggleGroup();
         mandotaryFields = FXCollections.observableArrayList();
@@ -79,6 +85,7 @@ public class UserCreationController extends GeneralClass implements Initializabl
             admin.setToggleGroup(roleToggle);
             user.setToggleGroup(roleToggle);
             user.setSelected(true);
+            imagePath = imageView.getImage().getUrl();
 
         });
     }
@@ -86,11 +93,15 @@ public class UserCreationController extends GeneralClass implements Initializabl
 
     @FXML
     void createUser(ActionEvent event) throws SQLException {
+
+        if (selectedFile != null) {
+            imagePath = selectedFile.getAbsolutePath();
+        }
         String gender = chooseGender(male, female);
         String role = role(superadmin, admin, user);
         if (isValid(mandotaryFields, ganderToggle)) {
             Users user = new Users(0, firstname.getText().trim(), lastname.getText().trim(), phone.getText().trim(),
-                    gender, shift.getValue(), username.getText().trim(), password.getText().trim(), "Empty", role);
+                    gender, shift.getValue(), username.getText().trim(), password.getText().trim(), imagePath, role);
             userDAO.insert(user);
             System.out.println("New user added.....");
         } else {
@@ -100,5 +111,22 @@ public class UserCreationController extends GeneralClass implements Initializabl
 
     }
 
+    @FXML
+    void imageUploader(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Dooro sawirka profile-ka");
+
+        selectedFile = fileChooser.showOpenDialog(null);
+
+        System.out.println("File selected " + selectedFile);
+        if (selectedFile != null) {
+
+            Image image = new Image(new File(selectedFile.getAbsolutePath()).toURI().toString());
+            imageView.setImage(image);
+        } else {
+            imageView.setImage(new Image("com/example/production/image/no-image.jpeg"));
+        }
+    }
 
 }
