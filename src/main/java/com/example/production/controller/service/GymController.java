@@ -47,7 +47,7 @@ public class GymController implements Initializable {
 
     public GymController() throws SQLException {
         gymDAO = new GymDAO();
-        gym = gymDAO.getGym();
+        gym = gymDAO.getCurrentGym();
         this.boxDAO = new BoxDAO();
     }
 
@@ -79,7 +79,7 @@ public class GymController implements Initializable {
 
         boxDAO.insert(box);
 
-        System.out.println("Box saved.....");
+       // System.out.println("Box saved.....");
     }
 
     @FXML

@@ -2,6 +2,7 @@ package com.example.production.models;
 
 import com.example.production.entities.Customers;
 import com.example.production.models.service.BoxDAO;
+import com.example.production.models.service.GymDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -13,15 +14,18 @@ public class Model extends Task<Void> {
 
     private final CustomerDAO customerDAO;
     private final BoxDAO boxDAO;
+    private final GymDAO gymDAO;
 
     private ObservableList<Customers> customers;
     private ObservableList<Customers> activeCustomers;
     private ObservableList<Customers> outDatedCustomers;
+
     int limit = 0;
 
     public Model() throws SQLException {
         this.customerDAO = new CustomerDAO();
         this.boxDAO = new BoxDAO();
+        this.gymDAO = new GymDAO();
         this.customers = FXCollections.observableArrayList(customerDAO.getAll());
         this.activeCustomers = FXCollections.observableArrayList();
         this.outDatedCustomers = FXCollections.observableArrayList();
@@ -57,6 +61,10 @@ public class Model extends Task<Void> {
 
     public BoxDAO getBoxDAO() {
         return boxDAO;
+    }
+
+    public GymDAO getGymDAO() {
+        return gymDAO;
     }
 
     public ObservableList<Customers> getActiveCustomers() {

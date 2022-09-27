@@ -1,0 +1,9 @@
+.outdated-pane{
+    -fx-background-color: white;
+    -fx-background-position: 3;
+    -fx-border-radius: 10;
+}
+.outdated-pane:hover{
+    -fx-background-color: #b5f5be;
+    -fx-cursor: hand;
+}

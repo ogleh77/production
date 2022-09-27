@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#outdatedHandler" prefHeight="68.0" prefWidth="382.0" spacing="3.0" styleClass="outdated-pane" stylesheets="@../../styles/outdated-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project03.controllers.services.OutHandlerController">
+   <children>
+      <Circle fill="#2b4865" radius="31.0" stroke="BLACK" strokeType="INSIDE">
+         <HBox.margin>
+            <Insets left="10.0" right="20.0" />
+         </HBox.margin>
+      </Circle>
+      <VBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="210.0" spacing="12.0">
+         <children>
+            <Label fx:id="customerName" text="Mohamed Saeed" textFill="#2b4865">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="date" text="outdated 17-08-2022" textFill="#616060">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../../IdeaProjects/design/project03/src/main/resources/com/example/project03/icons/icons8_calendar_week34_48px_1.png" />
+         </image>
+      </ImageView>
+   </children>
+</HBox>

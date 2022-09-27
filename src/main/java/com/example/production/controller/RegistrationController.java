@@ -3,12 +3,15 @@ package com.example.production.controller;
 import com.example.production.entities.Customers;
 import com.example.production.entities.Users;
 import com.example.production.entities.services.Box;
+import com.example.production.entities.services.Gym;
 import com.example.production.general.GeneralClass;
 import com.example.production.models.Model;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -80,6 +83,7 @@ public class RegistrationController extends GeneralClass implements Initializabl
 
     @FXML
     private ComboBox<String> shift;
+
     @FXML
     private JFXButton salleryBtn;
 
@@ -91,19 +95,22 @@ public class RegistrationController extends GeneralClass implements Initializabl
 
     @FXML
     private Label weightValidationLabel;
-
-    private int maxDiscount = 3;
     private final Validator validator;
     private final ToggleGroup genderGroup;
     private final ObservableList<Control> mandotaryFields;
 
     private Users activeUser;
     private Model model;
+    private double fitnessCost;
+    private double maxDiscount;
+    private double poxingCost;
+    private Gym gym;
 
     public RegistrationController() {
         validator = new Validator();
         this.genderGroup = new ToggleGroup();
         this.mandotaryFields = FXCollections.observableArrayList();
+
     }
 
     @Override
@@ -114,6 +121,27 @@ public class RegistrationController extends GeneralClass implements Initializabl
             male.setToggleGroup(genderGroup);
             female.setToggleGroup(genderGroup);
             mandotaryFields.addAll(firstName, lastName, phone, paidby, amountPaid, shift, expPicker, discount);
+
+            fitnessCost = (int) gym.getFitnessCost();
+            maxDiscount = (int) gym.getMaxDiscount();
+            poxingCost = (int) gym.getPoxingCost();
+
+            System.out.println("Fitnes is " + fitnessCost);
+            System.out.println("maxcount is " + maxDiscount);
+            System.out.println("poxingcoust is " + poxingCost);
+
+            amountPaid.setText(String.valueOf(fitnessCost));
+
+            checkPoxing.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if (newValue) {
+                        amountPaid.setText(String.valueOf(fitnessCost + poxingCost));
+                    } else {
+                        amountPaid.setText(String.valueOf(fitnessCost));
+                    }
+                }
+            });
 
             try {
                 for (Box box : model.getBoxDAO().getAll()) {
@@ -128,6 +156,9 @@ public class RegistrationController extends GeneralClass implements Initializabl
         });
 
         fieldCecker();
+
+
+        // amountPaid.textProperty().bind(discount.textProperty());
     }
 
     public void fieldCecker() {
@@ -258,9 +289,10 @@ public class RegistrationController extends GeneralClass implements Initializabl
     }
 
 
-    public void setActiveUser(Users activeUser, Model model) {
+    public void setActiveUser(Users activeUser, Model model) throws SQLException {
         this.activeUser = activeUser;
         this.model = model;
+        this.gym = model.getGymDAO().getCurrentGym();
     }
 }
 

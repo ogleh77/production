@@ -20,6 +20,21 @@ public class BoxDAO extends Repo<Box> {
     @Override
     public void insert(Box box) throws SQLException {
 
+        String insertBox = " INSERT INTO box(box_title, box_cost, box_status) " +
+                "VALUES ('" + box.getBoxTitle() + "','" + box.getCost() + "'," + true + ")";
+
+        Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+
+        statement.executeUpdate(insertBox);
+
+        System.out.println("Box saved....");
+
+
+        connection.close();
+        statement.close();
+
+
     }
 
 

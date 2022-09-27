@@ -2,6 +2,7 @@ package com.example.production.controller;
 
 import com.example.production.controller.service.RecycleController;
 import com.example.production.controller.service.ReportController;
+import com.example.production.controller.service.SalaryController;
 import com.example.production.entities.Customers;
 import com.example.production.entities.Users;
 import com.example.production.general.GeneralClass;
@@ -91,8 +92,8 @@ public class DashboardController extends GeneralClass implements Initializable {
 
     @FXML
     void sallerHandler(ActionEvent event) throws IOException {
-        FXMLLoader loader = openWideWindow("/com/example/production/views/services/reports.fxml", borderPane, stackPane);
-
+        FXMLLoader loader = openWideWindow("/com/example/production/views/services/salary.fxml", borderPane, stackPane);
+       // SalaryController
     }
 
     @FXML

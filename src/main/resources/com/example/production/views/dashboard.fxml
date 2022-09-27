@@ -67,7 +67,7 @@
                                 </ImageView>
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="salleryBtn" onAction="#sallerHandler" prefHeight="38.0" prefWidth="148.0" styleClass="menu-btn" text="Sallery">
+                        <JFXButton fx:id="salleryBtn" onAction="#sallerHandler" prefHeight="38.0" prefWidth="148.0" styleClass="menu-btn" text="Salary">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

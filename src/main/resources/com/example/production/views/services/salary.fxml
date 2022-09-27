@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="514.0" prefWidth="552.0" styleClass="user-pane" stylesheets="@../../styles/user-creation-style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.production.controller.service.SalaryController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="552.0" spacing="290.0" style="-fx-background-color: #132332;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="182.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/icons8-salary-64.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Salary" textFill="#f2ecec">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="61.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="36.0" prefWidth="58.0" styleClass="cancel-pane">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/icons8--82771-50-f1f6f6.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <TableView fx:id="tableView" layoutX="35.0" layoutY="50.0" prefHeight="216.0" prefWidth="482.0">
+        <columns>
+          <TableColumn fx:id="month" prefWidth="102.0" text="month" />
+          <TableColumn fx:id="amount" prefWidth="71.0" text="amount" />
+            <TableColumn fx:id="discount" prefWidth="71.0" text="discount" />
+            <TableColumn fx:id="poxing" prefWidth="79.0" text="poxing " />
+            <TableColumn fx:id="vipBox" prefWidth="69.0" text="vip_box" />
+            <TableColumn fx:id="loan" prefWidth="88.0" text="loan" />
+        </columns>
+      </TableView>
+      <Label layoutX="32.0" layoutY="453.0" prefHeight="38.0" prefWidth="482.0" text="Halkan kala soco faa'iidada bishan &amp; wadarta bilihii hore" textFill="#8d7c7c">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="431.0" prefHeight="38.0" prefWidth="222.0" text="Shaxda muujinta faa'idada" textFill="#756f6f">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="164.0" fitWidth="222.0" layoutX="330.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../svg-images/undraw_Success_factors_re_ce93.png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" layoutX="37.0" layoutY="318.0" prefHeight="100.0" prefWidth="134.0" styleClass="panes">
+         <effect>
+            <DropShadow height="12.1" radius="7.775" spread="0.17">
+               <color>
+                  <Color red="0.11306042969226837" green="0.611468493938446" blue="0.7631579041481018" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Label fx:id="usersCount" prefHeight="38.0" prefWidth="117.0" text="Bishan" textFill="#b58f8f">
+               <font>
+                  <Font name="Arial Bold" size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="mounthAmount" prefHeight="20.0" prefWidth="51.0" text="\$100" textFill="#9e9898">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="188.0" layoutY="315.0" prefHeight="107.0" prefWidth="134.0" styleClass="panes">
+         <effect>
+            <DropShadow height="12.1" radius="7.775" spread="0.17">
+               <color>
+                  <Color red="0.11306042969226837" green="0.611468493938446" blue="0.7631579041481018" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Label fx:id="usersCount1" prefHeight="38.0" prefWidth="119.0" text="Wadarta" textFill="#b58f8f">
+               <font>
+                  <Font name="Arial Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="sumtion" prefHeight="20.0" prefWidth="51.0" text="\$100" textFill="#9e9898">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+   <effect>
+      <DropShadow height="38.79" radius="23.3425" width="56.58" />
+   </effect>
+</AnchorPane>

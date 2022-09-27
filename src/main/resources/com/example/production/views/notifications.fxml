@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #E9F3F3;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project03.controllers.services.NotificationController">
+   <content>
+      <VBox fx:id="monthlyVboxShower" prefHeight="476.0" prefWidth="382.0" spacing="3.0" />
+   </content>
+</ScrollPane>

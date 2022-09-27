@@ -42,7 +42,7 @@
                 <Font name="Arial Bold" size="14.0" />
             </font>
         </Label>
-        <TextField fx:id="amountPaid" layoutX="294.0" layoutY="234.0" opacity="0.59" prefHeight="36.0" prefWidth="184.0" promptText="amount" text="12" />
+        <TextField fx:id="amountPaid" layoutX="294.0" layoutY="234.0" opacity="0.59" prefHeight="36.0" prefWidth="184.0" promptText="amount" />
         <Label layoutX="127.0" layoutY="211.0" text="amount paid" textFill="#46749f">
             <font>
                 <Font name="Arial Bold" size="14.0" />

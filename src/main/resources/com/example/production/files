@@ -1,158 +1,275 @@
- package com.example.production.models;
+ package com.example.production.controller;
 
  import com.example.production.entities.Customers;
+ import com.example.production.entities.Users;
  import com.example.production.entities.services.Box;
- import com.example.production.models.service.DailyReportDAO;
- import com.example.production.repositories.Repo;
+ import com.example.production.general.GeneralClass;
+ import com.example.production.models.Model;
+ import com.jfoenix.controls.JFXButton;
+ import com.jfoenix.controls.JFXCheckBox;
+ import com.jfoenix.controls.JFXRadioButton;
+ import javafx.application.Platform;
  import javafx.collections.FXCollections;
  import javafx.collections.ObservableList;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+ import javafx.fxml.Initializable;
+ import javafx.scene.control.*;
+ import javafx.scene.image.ImageView;
+ import javafx.scene.layout.VBox;
+ import net.synedra.validatorfx.Check;
+ import net.synedra.validatorfx.Validator;
 
- import java.sql.*;
+ import java.net.URL;
+ import java.sql.SQLException;
  import java.time.LocalDate;
- import java.util.Arrays;
+ import java.util.ResourceBundle;
+
+ public class RegistrationController extends GeneralClass implements Initializable {
+
+     @FXML
+     private TextField amountPaid;
+
+     @FXML
+     private Label amountValidation;
+
+     @FXML
+     private ComboBox<Box> boxChooser;
+
+     @FXML
+     private JFXCheckBox checkPoxing;
+
+     @FXML
+     private Label dateValidationLabel;
+
+     @FXML
+     private TextField discount;
+
+     @FXML
+     private Label discountValidationLabel;
+
+     @FXML
+     private DatePicker expPicker;
+
+     @FXML
+     private JFXRadioButton female;
+
+     @FXML
+     private TextField firstName;
+
+     @FXML
+     private VBox imagePane;
+
+     @FXML
+     private ImageView imgView;
+
+     @FXML
+     private TextField lastName;
+
+     @FXML
+     private JFXRadioButton male;
+
+     @FXML
+     private ComboBox<String> paidby;
+
+     @FXML
+     private TextField phone;
+
+     @FXML
+     private Label phoneValidationLabel;
+
+     @FXML
+     private ComboBox<String> shift;
+     @FXML
+     private JFXButton salleryBtn;
+
+     @FXML
+     private TextField weight;
+
+     @FXML
+     private Label weightValidation;
+
+     @FXML
+     private Label weightValidationLabel;
 
 
- public class CustomerDAO extends Repo<Customers> {
-     private Connection connection;
-     private DailyReportDAO dailyReportDAO;
-     private LocalDate today;
+     private final Validator validator;
+     private final ToggleGroup genderGroup;
+     private final ObservableList<Control> mandotaryFields;
 
-     public CustomerDAO() {
-         this.dailyReportDAO = new DailyReportDAO();
+     private Users activeUser;
+     private Model model;
+     private double fitnessCost;
+     private double maxDiscount;
+     private double poxingCost;
+
+     public RegistrationController() {
+         validator = new Validator();
+         this.genderGroup = new ToggleGroup();
+         this.mandotaryFields = FXCollections.observableArrayList();
+
      }
 
      @Override
-     public void insert(Customers customer) throws SQLException {
-         today = LocalDate.now();
-         connection = getConnection();
-         connection.setAutoCommit(false);
+     public void initialize(URL location, ResourceBundle resources) {
+         Platform.runLater(() -> {
+             paidby.setItems(getPaidBy());
+             shift.setItems(getShift());
+             male.setToggleGroup(genderGroup);
+             female.setToggleGroup(genderGroup);
+             mandotaryFields.addAll(firstName, lastName, phone, paidby, amountPaid, shift, expPicker, discount);
 
+             fitnessCost = (int) model.getGymDAO().getGyms().get(0).getFitnessCost();
+             maxDiscount = (int) model.getGymDAO().getGyms().get(0).getMaxDiscount();
+             poxingCost = (int) model.getGymDAO().getGyms().get(0).getPoxingCost();
+             amountPaid.setText(String.valueOf(fitnessCost));
+             try {
+                 for (Box box : model.getBoxDAO().getAll()) {
+                     if (box.isReady()) {
+                         boxChooser.getItems().add(box);
+                     }
 
-         String query = "INSERT INTO customer(first_name, last_name, phone, gender, paid_by, paid, discount, shift, exp_date, weight, box_fk, poxing, image, user_added,date_joined)" +
-                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         PreparedStatement preparedStatement = connection.prepareStatement(query);
-         //Qualify the genders......
-         qualificationChecker(customer, today);
-         //Persist by db
-         setPreparedStatement(customer, preparedStatement, today, false);
+                 }
+             } catch (SQLException e) {
+                 throw new RuntimeException(e);
+             }
+         });
 
-         connection.commit();
-         System.out.println("Saved...");
-         //connection.commit();
+         fieldCecker();
+     }
+
+     public void fieldCecker() {
+         validator.createCheck().dependsOn("phone", phone.textProperty())
+                 .withMethod(c -> {
+                 }).withMethod(this::phoneCheck)
+                 .decoratingWith(this::messageDecorator)
+                 .decorates(phoneValidationLabel)
+                 //.decorates(discountValidation).
+                 .immediate();
+
+         validator.createCheck().dependsOn("discount", discount.textProperty())
+                 .withMethod(c -> {
+                 }).withMethod(this::discountCheck)
+                 .decoratingWith(this::messageDecorator)
+                 .decorates(discountValidationLabel)
+                 //.decorates(discountValidation).
+                 .immediate();
+
+         validator.createCheck().dependsOn("weight", weight.textProperty())
+                 .withMethod(c -> {
+                 }).withMethod(this::weightCheck)
+                 .decoratingWith(this::messageDecorator)
+                 .decorates(weightValidationLabel)
+                 //.decorates(discountValidation).
+                 .immediate();
+
+         validator.createCheck().dependsOn("date", expPicker.valueProperty())
+                 .withMethod(c -> {
+                 }).withMethod(this::dateCheck)
+                 .decoratingWith(this::messageDecorator)
+                 .decorates(dateValidationLabel)
+                 //.decorates(discountValidation).
+                 .immediate();
+
 
      }
 
-     @Override
-     public void update(Customers customer) throws SQLException {
- //        String today = df.format(new Date()).substring(3, 10);
- //        String dateJoined = customer.getDateJoined().substring(3, 10);
-         connection = getConnection();
-         PreparedStatement ps;
-         String query = "INSERT INTO customer(first_name, last_name, phone, gender, paid_by, paid, discount, shift, exp_date, weight, box_fk, poxing, image, user_added)" +
-                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         PreparedStatement preparedStatement = connection.prepareStatement(query);
-         //Qualify the genders......
-         qualificationChecker(customer, today);
-         //Persist by db
-         setPreparedStatement(customer, preparedStatement, today, false);
-         //customers.add(customer);
-         connection.commit();
-         System.out.println("Saved...");
+     @FXML
+     void imageUploadHandler(ActionEvent event) {
 
-         String updateQuery = " UPDATE customer SET first_name=?, last_name=?, phone=?, gender=?, paid_by=?," +
-                 " paid=?, discount=?, shift=?, exp_date=?, weight=?, box_fk=?, poxing=?, image=?, user_added=?,date_joined=?" +
-                 "WHERE costumer_id=" + customer.getCostumerId();
-         ps = connection.prepareStatement(updateQuery);
-         setPreparedStatement(customer, ps, LocalDate.now(), false);
-         System.out.println("Active customer mutated...");
-
-         ps.close();
      }
 
-     @Override
-     public ObservableList<Customers> getAll() throws SQLException {
-         ObservableList<Customers> customers = FXCollections.observableArrayList();
-         Customers customer = null;
-         Box box = null;
-         Connection connection = getConnection();
-         Statement statement = connection.createStatement();
+     @FXML
+     void saveHandler(ActionEvent event) {
+         if (isValid(mandotaryFields, genderGroup) && validator.getValidationResult().getMessages().isEmpty()) {
+             System.out.println("Good to go");
+             String ganderVal = chooseGender(male, female);
+             double aPaidVal = Double.parseDouble(get(amountPaid));
+             double disCountVal = Double.parseDouble(get(amountPaid));
+             double weightVal = Double.parseDouble(get(weight));
+             Box box;
+             if (boxChooser.getValue() != null) {
+                 box = boxChooser.getValue();
 
-         ResultSet rs = statement.executeQuery("SELECT * FROM customer INNER JOIN box " +
-                 "ON customer.box_fk = box.box_id;");
-
-         while (rs.next()) {
-
-             box = new Box(rs.getInt("box_id"),
-                     rs.getString("box_title"),
-                     rs.getDouble("box_cost"), rs.getBoolean("box_status"));
-
-             customer = getCustomers(box, rs);
-             customers.add(customer);
-         }
-         rs.close();
-         statement.close();
-         return customers;
-     }
+             } else {
+                 box = new Box(0, null, 0, false);
+             }
 
 
-     private Customers getCustomers(Box box, ResultSet rs) throws SQLException {
-         Customers customer;
-         LocalDate expDate = LocalDate.parse(rs.getString(10));
-         LocalDate dateJoined = LocalDate.parse(rs.getString(10));
-         customer = new Customers(
-                 rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                 rs.getString(5), rs.getString(6), rs.getDouble(7),
-                 rs.getDouble(8), rs.getString(9), expDate, rs.getDouble(11),
-                 box, rs.getBoolean(13), rs.getString(14), rs.getString(15), dateJoined);
-         return customer;
-     }
+             try {
+                 Customers customer = new Customers(0, get(firstName), get(lastName), get(phone), ganderVal,
+                         paidby.getValue(), aPaidVal, disCountVal, shift.getValue(), expPicker.getValue(), weightVal,
+                         box, checkPoxing.isSelected(), "Empry", activeUser.getUsername(), LocalDate.now());
+                 model.getCustomerDAO().insert(customer);
+
+                 model.getBoxDAO().update(box);
+                 System.out.println(customer);
+             } catch (SQLException e) {
+                 System.out.println(e.getMessage());
+             }
 
 
-     private void setPreparedStatement(Customers customer, PreparedStatement ps, LocalDate day, boolean outdated) throws SQLException {
-         ps.setString(1, customer.getFirstName());
-         ps.setString(2, customer.getLastName());
-         ps.setString(3, customer.getPhone());
-         ps.setString(4, customer.getGender());
-         ps.setString(5, customer.getPaidBy());
-         ps.setDouble(6, customer.getPaid());
-         ps.setDouble(7, customer.getDiscount());
-         ps.setString(8, customer.getShift());
-         ps.setString(9, customer.getExpDate().toString());
-         ps.setDouble(10, customer.getWeight());
-         ps.setInt(11, customer.getBox().getBoxId());
-         ps.setBoolean(12, customer.isPoxing());
-         ps.setString(13, customer.getImage());
-         ps.setString(14, customer.getUserAdded());
-         ps.setString(15, customer.getDateJoined().toString());
-         if (outdated) {
-             //update today if the user is outdated
-             ps.setString(15, day.toString());
+         } else {
+             System.out.println("Not valid...");
          }
 
-         ps.executeUpdate();
+     }
 
-         System.out.println("executed....");
 
+     @FXML
+     void update(ActionEvent event) {
 
      }
 
-     public void qualificationChecker(Customers customer, LocalDate today) throws SQLException {
-         Statement st = connection.createStatement();
-
-         if (customer.getGender().equals("Male") && customer.getBox().getBoxId() > 0) {
-             dailyReportDAO.dailyReportMaleWithBox(today, st);
-
-         } else if (customer.getGender().equals("Female") && customer.getBox().getBoxId() > 0) {
-             dailyReportDAO.dailyReportFemaleWithBox(today, st);
-
-         } else if (customer.getBox().getBoxId() == 0 && customer.getGender().equals("Male")) {
-             dailyReportDAO.dailyReportMaleWithOutBox(today, st);
-         } else if (customer.getBox().getBoxId() == 0 && customer.getGender().equals("Female")) {
-             dailyReportDAO.dailyReportFemaleWithOutBox(today, st);
+     private void phoneCheck(Check.Context c) {
+         if (checkDigitsAndNullable(phone)) {
+             c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+         } else if (phone.getText().length() < 7) {
+             c.error("Lanbarku 7 digit kama yaraan karo!");
          }
-         int arr[] = st.executeBatch();
-         System.out.println(Arrays.toString(arr));
-         st.close();
+
      }
 
+     private void weightCheck(Check.Context c) {
+         if (checkDigitsAndNullable(weight)) {
+             c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+         } else if (weight.getText().length() > 2) {
+             c.error("Ma qofbaa jira 100kg dhafay ");
+         }
+
+     }
+
+     private void discountCheck(Check.Context c) {
+         double discountAmount;
+         if (checkDigitsAndNullable(discount)) {
+             c.error("Fadlan lanbaro qudha loo ogol yahay halkan!");
+
+         } else if (!discount.getText().isBlank() && !discount.getText().isBlank()) {
+             discountAmount = Double.parseDouble(discount.getText().trim());
+             if (discountAmount > maxDiscount) {
+                 c.error("Fadlan discount ku kama badan karo " + maxDiscount);
+             }
+
+         }
+
+
+     }
+
+     private void dateCheck(Check.Context c) {
+         // double discountAmount;
+
+         if (expPicker.getValue() != null && expPicker.getValue().isBefore(LocalDate.now())) {
+             c.error("Dooro wakhti ka danbeya manta tar: " + LocalDate.now());
+
+         }
+
+     }
+
+
+     public void setActiveUser(Users activeUser, Model model) {
+         this.activeUser = activeUser;
+         this.model = model;
+     }
  }
+
+
